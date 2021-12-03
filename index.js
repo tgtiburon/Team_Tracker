@@ -253,6 +253,39 @@ const createIntern = () => {
 
     
 }
+//DEBUG DATA
+debugData = [
+    Manager {
+      name: 'ManagerName',
+      id: 7,
+      email: 'manager@email.com',
+      officeNumber: 77
+    },
+    Engineer {
+      name: 'Engineer1',
+      id: 2,
+      email: 'engineer1@email.com',
+      github: 'eng1github'
+    },
+    Engineer {
+      name: 'Engineer2',
+      id: 4,
+      email: 'engineer2@email.com',
+      github: 'engineer2github'
+    },
+    Intern {
+      name: 'intern1',
+      id: 6,
+      email: 'intern1@email.com',
+      school: 'MSU'
+    },
+    Intern {
+      name: 'intern2',
+      id: 9,
+      email: 'intern2@email.com',
+      school: 'CMU'
+    }
+  ];
 
 
 const callMenu = () => { 
@@ -285,6 +318,9 @@ const callMenu = () => {
                  let webPage = generateHTML(teamArr)
                   
                 console.table(webPage);
+                console.table(debugData);
+
+                //console.log(teamArr);
 
                     
 

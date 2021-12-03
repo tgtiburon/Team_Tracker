@@ -48,3 +48,9 @@ test("uses getRole() to get the manager's Role", () => {
 
 });
 
+test("uses getOfficeNumber() to get the manager's office number", () => {
+    const manager = new Manager("Mark",7,"test@test.com", 77);
+  
+    expect(manager.getOfficeNumber()).toEqual(77);  
+});
+
