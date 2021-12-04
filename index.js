@@ -175,11 +175,11 @@ const init = () => {
 
 const createManager = () => {
 
-  //  console.log("Inside createManager()")
+ 
     inquirer
     .prompt(managerQuestions)
     .then(managerAnswers => {
-       // console.log(managerAnswers);
+      
 
         managerName = managerAnswers.managerName;
         id = managerAnswers.id;
@@ -203,7 +203,7 @@ const createEngineer = () => {
     inquirer
         .prompt(allQuestions)
         .then(allAnswers => {
-           // console.log(allAnswers);
+         
             // pull data from answers
             engineerName = allAnswers.name;
             engineerId = allAnswers.id;
@@ -231,7 +231,7 @@ const createIntern = () => {
     inquirer
     .prompt(allQuestions)
     .then(allAnswers => {
-       // console.log(allAnswers);
+      
         // pull data from answers
         internName = allAnswers.name;
         internId = allAnswers.id;
@@ -245,7 +245,7 @@ const createIntern = () => {
     
                 teamArr.push(intern);
             
-               // console.table(teamArr);
+          
                 callMenu();
             });
 
@@ -253,55 +253,24 @@ const createIntern = () => {
 
     
 }
-//DEBUG DATA
-debugData = [
-    {
-      name: 'ManagerName',
-      id: 7,
-      email: 'manager@email.com',
-      officeNumber: 77
-    },
-    {
-      name: 'Engineer1',
-      id: 2,
-      email: 'engineer1@email.com',
-      github: 'eng1github'
-    },
-    {
-      name: 'Engineer2',
-      id: 4,
-      email: 'engineer2@email.com',
-      github: 'engineer2github'
-    },
-    {
-      name: 'intern1',
-      id: 6,
-      email: 'intern1@email.com',
-      school: 'MSU'
-    },
-    {
-      name: 'intern2',
-      id: 9,
-      email: 'intern2@email.com',
-      school: 'CMU'
-    }
-  ];
+
+
 
 
 const callMenu = () => { 
-   // console.log("Inside callMenu()");
+  
     inquirer
         .prompt(
             {
                 name: "menuChoice",
                 type: "list",
-                choices: ["Engineer", "Intern", new inquirer.Separator(), "Finish building team"]
-
+                choices: ["Engineer", "Intern", new inquirer.Separator(), "Finish building team"],
+                default: "Finish building team"
             }
         )
         .then(menuAnswer => {
 
-           // console.log(menuAnswer);
+         
             if(menuAnswer.menuChoice === "Engineer") {
             
                 createEngineer();
@@ -312,23 +281,18 @@ const callMenu = () => {
             }
             if(menuAnswer.menuChoice === "Finish building team") {
                
-                //Generate the webpage and save it
-                //Not sure this will work
-                
+                // DEBUG DEBUG DEBUG
+              // debugArr = JSON.stringify(teamArr);
+               // debugArr = teamArr;
+                console.table(teamArr);
+               // debugArr = teamArr;
+               // saveDebugArr("debug.txt", debugArr);
+
+         
+               
                 let webPage = generateHTML(teamArr)
-                //debug version below
-               // console.log(debugData);
-               // let webPage = generateHTML(debugData);
-                  
-                //console.table(webPage);
-                //console.table(debugData);
-
-                //console.log(teamArr);
-
-                //debug
-                
-
-                // 
+          
+             
                 writeToFile("index.html", webPage);
 
             }
@@ -337,6 +301,80 @@ const callMenu = () => {
 
 
 }
+
+// DEBUG 
+//
+//
+
+
+// const saveDebugArr = (fileName, debugArr) => {
+//         //data = debugArr;
+//     return new Promise((resolve,rejects) => {
+//         fileName = "./dist/" + fileName;
+//         fs.writeFileSync(fileName, debugArr, 'utf8', err => {
+//             // if thre is an error reject the promise
+//             // will trigger the catch of the promise
+
+//             if(err) {
+//                 //return out of function to make sure promise does
+//                 // not accidently resolve
+//                 console.log(err);
+//                 rejects(err);
+//                 return;
+
+//             }
+//             resolve({
+//                 ok:true,
+//                 message:'File created!'
+//             });
+//         });
+
+
+//     });
+
+     
+
+
+// }
+
+// const loadDebugArr = (fileName,parsedDebugArr) =>  {
+//     return new Promise((resolve,rejects) => {
+//         fileName = "./dist/" + fileName;
+//         const debugArr = fs.readFileSync(fileName, err => {
+//             // if thre is an error reject the promise
+//             // will trigger the catch of the promise
+//             if(err) {
+//                 //return out of function to make sure promise does
+//                 // not accidently resolve
+//                 console.log(err);
+//                 rejects(err);
+//                 return;
+
+//             }
+//             resolve({
+//                 ok:true,
+//                 message:'File Read!'
+//             });
+            
+//         });
+//         const parsedDebugArr = JSON.parse(debugArr);
+
+//         console.log(parsedDebugArr);
+//         // for debugging
+//         let webPage = generateHTML(debugArr);
+
+//         //return parsedDebugArr;
+
+    
+
+
+//     });
+
+   
+// };
+//
+//
+// END DEBUG
 
 const writeToFile = (fileName, data)  => {
 
