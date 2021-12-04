@@ -175,11 +175,11 @@ const init = () => {
 
 const createManager = () => {
 
-    console.log("Inside createManager()")
+  //  console.log("Inside createManager()")
     inquirer
     .prompt(managerQuestions)
     .then(managerAnswers => {
-        console.log(managerAnswers);
+       // console.log(managerAnswers);
 
         managerName = managerAnswers.managerName;
         id = managerAnswers.id;
@@ -203,7 +203,7 @@ const createEngineer = () => {
     inquirer
         .prompt(allQuestions)
         .then(allAnswers => {
-            console.log(allAnswers);
+           // console.log(allAnswers);
             // pull data from answers
             engineerName = allAnswers.name;
             engineerId = allAnswers.id;
@@ -217,7 +217,7 @@ const createEngineer = () => {
                 
                     teamArr.push(engineer);
             
-                    console.table(teamArr);
+                  //  console.table(teamArr);
 
                     callMenu();
                 });
@@ -231,7 +231,7 @@ const createIntern = () => {
     inquirer
     .prompt(allQuestions)
     .then(allAnswers => {
-        console.log(allAnswers);
+       // console.log(allAnswers);
         // pull data from answers
         internName = allAnswers.name;
         internId = allAnswers.id;
@@ -245,7 +245,7 @@ const createIntern = () => {
     
                 teamArr.push(intern);
             
-                console.table(teamArr);
+               // console.table(teamArr);
                 callMenu();
             });
 
@@ -255,31 +255,31 @@ const createIntern = () => {
 }
 //DEBUG DATA
 debugData = [
-    Manager {
+    {
       name: 'ManagerName',
       id: 7,
       email: 'manager@email.com',
       officeNumber: 77
     },
-    Engineer {
+    {
       name: 'Engineer1',
       id: 2,
       email: 'engineer1@email.com',
       github: 'eng1github'
     },
-    Engineer {
+    {
       name: 'Engineer2',
       id: 4,
       email: 'engineer2@email.com',
       github: 'engineer2github'
     },
-    Intern {
+    {
       name: 'intern1',
       id: 6,
       email: 'intern1@email.com',
       school: 'MSU'
     },
-    Intern {
+    {
       name: 'intern2',
       id: 9,
       email: 'intern2@email.com',
@@ -289,7 +289,7 @@ debugData = [
 
 
 const callMenu = () => { 
-    console.log("Inside callMenu()");
+   // console.log("Inside callMenu()");
     inquirer
         .prompt(
             {
@@ -301,7 +301,7 @@ const callMenu = () => {
         )
         .then(menuAnswer => {
 
-            console.log(menuAnswer);
+           // console.log(menuAnswer);
             if(menuAnswer.menuChoice === "Engineer") {
             
                 createEngineer();
@@ -315,17 +315,21 @@ const callMenu = () => {
                 //Generate the webpage and save it
                 //Not sure this will work
                 
-                 let webPage = generateHTML(teamArr)
+                let webPage = generateHTML(teamArr)
+                //debug version below
+               // console.log(debugData);
+               // let webPage = generateHTML(debugData);
                   
-                console.table(webPage);
-                console.table(debugData);
+                //console.table(webPage);
+                //console.table(debugData);
 
                 //console.log(teamArr);
 
-                    
+                //debug
+                
 
                 // 
-               // writeToFile("index.html", webPage);
+                writeToFile("index.html", webPage);
 
             }
 
