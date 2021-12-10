@@ -1,3 +1,4 @@
+// All the requires to run the app
 const inquirer = require('inquirer');
 const fs = require('fs');
 
@@ -10,7 +11,7 @@ const { rejects } = require('assert');
 
 const teamArr = [];
 
-
+// array for all generic questions
 const  allQuestions = [
     {
             type: "input",
@@ -55,6 +56,8 @@ const  allQuestions = [
     }
    
 ]
+
+// array for manager specific questions
 const managerQuestions =  [
 
     {
@@ -116,6 +119,7 @@ const managerQuestions =  [
 
 ]
 
+// array for engineer specific questions
 const engineerQuestions =  [
     {
             type: "input",
@@ -135,6 +139,8 @@ const engineerQuestions =  [
 
 ]
 
+
+// array for intern specific questions
 const internQuestions =  [
     {
             type: "input",
@@ -172,7 +178,9 @@ const init = () => {
       
 
 }
-
+/**
+ * Function used to create the manager object
+ */
 const createManager = () => {
 
  
@@ -197,7 +205,9 @@ const createManager = () => {
 }
 
 
-
+/**
+ * Function used to create as an engineer object
+ */
 const createEngineer = () => {
 
     inquirer
@@ -225,7 +235,9 @@ const createEngineer = () => {
         });
         
 };
-
+/**
+ * Function used to create an intern object
+ */
 const createIntern = () => {
 
     inquirer
@@ -244,8 +256,6 @@ const createIntern = () => {
                 const intern = new Intern(internName, internId, internEmail, internSchool);
     
                 teamArr.push(intern);
-            
-          
                 callMenu();
             });
 
@@ -255,7 +265,9 @@ const createIntern = () => {
 }
 
 
-
+/**
+ * Function used to call which questions to ask, or to end the questions and launch html creation
+ */
 
 const callMenu = () => { 
   
@@ -280,20 +292,15 @@ const callMenu = () => {
                 createIntern();
             }
             if(menuAnswer.menuChoice === "Finish building team") {
-               
-                // DEBUG DEBUG DEBUG
-              // debugArr = JSON.stringify(teamArr);
-               // debugArr = teamArr;
-                console.table(teamArr);
-               // debugArr = teamArr;
-               // saveDebugArr("debug.txt", debugArr);
-
+             
          
                
                 let webPage = generateHTML(teamArr)
-          
-             
+        
                 writeToFile("index.html", webPage);
+
+                debugArr = teamArr;
+            
 
             }
 
@@ -302,79 +309,7 @@ const callMenu = () => {
 
 }
 
-// DEBUG 
-//
-//
 
-
-// const saveDebugArr = (fileName, debugArr) => {
-//         //data = debugArr;
-//     return new Promise((resolve,rejects) => {
-//         fileName = "./dist/" + fileName;
-//         fs.writeFileSync(fileName, debugArr, 'utf8', err => {
-//             // if thre is an error reject the promise
-//             // will trigger the catch of the promise
-
-//             if(err) {
-//                 //return out of function to make sure promise does
-//                 // not accidently resolve
-//                 console.log(err);
-//                 rejects(err);
-//                 return;
-
-//             }
-//             resolve({
-//                 ok:true,
-//                 message:'File created!'
-//             });
-//         });
-
-
-//     });
-
-     
-
-
-// }
-
-// const loadDebugArr = (fileName,parsedDebugArr) =>  {
-//     return new Promise((resolve,rejects) => {
-//         fileName = "./dist/" + fileName;
-//         const debugArr = fs.readFileSync(fileName, err => {
-//             // if thre is an error reject the promise
-//             // will trigger the catch of the promise
-//             if(err) {
-//                 //return out of function to make sure promise does
-//                 // not accidently resolve
-//                 console.log(err);
-//                 rejects(err);
-//                 return;
-
-//             }
-//             resolve({
-//                 ok:true,
-//                 message:'File Read!'
-//             });
-            
-//         });
-//         const parsedDebugArr = JSON.parse(debugArr);
-
-//         console.log(parsedDebugArr);
-//         // for debugging
-//         let webPage = generateHTML(debugArr);
-
-//         //return parsedDebugArr;
-
-    
-
-
-//     });
-
-   
-// };
-//
-//
-// END DEBUG
 
 const writeToFile = (fileName, data)  => {
 
