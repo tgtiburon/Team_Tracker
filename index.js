@@ -7,6 +7,7 @@ const Engineer = require('./lib/Engineer.js');
 const Intern = require('./lib/Intern.js');
 const generateHTML = require('./src/generateHTML');
 const { rejects } = require('assert');
+const { off } = require('process');
 
 
 const teamArr = [];
@@ -27,17 +28,25 @@ const  allQuestions = [
             }
     },
     {
-            type: "number",
+            type: "input",
             name: "id",
             message: "What is the employee's id?",
-            validate: employeeId => {
-                if(employeeId)  {
-                    return true;
-                }else {
-                    console.log("Please enter the employee's ID number.");
+            validate: employeeID => {
+
+                if(employeeID){
+                    // !isNaN means it is a number
+                    if(!isNaN(employeeID)) {
+                            return true;
+
+                        }else {
+                        console.log("Please enter a valid employee ID.");
+                        return false;
+                    }
+                } else {
+                    console.log("Please enter a valid employee ID.");
                     return false;
-                }
-            }
+                }    
+            } 
 
     },
     {
@@ -45,7 +54,14 @@ const  allQuestions = [
             name: "email",
             message: "What is the employee's email address?",
             validate: employeeEmail => {
-                if(employeeEmail)  {
+                // found this regex string on stackoverflow 
+                // User rnevius answered
+               var validRegex =  /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+               
+                //test with regex
+                validEmail = validRegex.test(employeeEmail);
+                // if validEmail matches the regex it will be true
+                if(validEmail)  {
                     return true;
                 }else {
                     console.log("Please enter the employee's email address.");
@@ -74,14 +90,42 @@ const managerQuestions =  [
             }
     },
     {
-            type: "number",
+            type: "input",
             name: "id",
             message: "What is the manager's id?",
-            validate: officeNum => {
-                if(officeNum)  {
+            validate: managerID => {
+
+                if(managerID){
+                
+                    if(!isNaN(managerID)) {
+                            return true;
+
+                        }else {
+                        console.log("Please enter a valid Manager ID.");
+                        return false;
+                    }
+                } else {
+                    console.log("Please enter a valid Manager ID.");
+                    return false;
+                }    
+            } 
+    },
+    {
+            type: "input",
+            name: "email",
+            message: "What is the manager's email?",
+            validate: employeeEmail => {
+                // found this regex string on stackoverflow 
+                // User rnevius answered
+               var validRegex =  /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+               
+                //test with regex
+                validEmail = validRegex.test(employeeEmail);
+                // if validEmail matches the regex it will be true
+                if(validEmail)  {
                     return true;
                 }else {
-                    console.log("Please enter an office number.");
+                    console.log("Please enter the employee's email address.");
                     return false;
                 }
             }
@@ -89,30 +133,28 @@ const managerQuestions =  [
     },
     {
             type: "input",
-            name: "email",
-            message: "What is the manager's email?",
-            validate: officeNum => {
-                if(officeNum)  {
-                    return true;
-                }else {
-                    console.log("Please enter an office number.");
-                    return false;
-                }
-            }
-
-    },
-    {
-            type: "number",
             name: "officeNum",
             message: "What is the manager's office number?(required)",
             validate: officeNum => {
-                if(officeNum)  {
-                    return true;
-                }else {
+
+                if(officeNum){
+                
+                    if(!isNaN(officeNum)) {
+                            return true;
+
+                
+                
+                        }else {
+                        console.log("Please enter an office number.");
+                        return false;
+                    }
+                } else {
                     console.log("Please enter an office number.");
                     return false;
-                }
-            }
+
+
+                }    
+            } 
 
     }
 
@@ -198,8 +240,7 @@ const createManager = () => {
         teamArr.push(manager);
 
         callMenu();
-        
-        
+    
     })
     
 }
@@ -274,8 +315,10 @@ const callMenu = () => {
     inquirer
         .prompt(
             {
-                name: "menuChoice",
+               
                 type: "list",
+                name: "menuChoice",
+                message:"Please pick from the following menu.",
                 choices: ["Engineer", "Intern", new inquirer.Separator(), "Finish building team"],
                 default: "Finish building team"
             }

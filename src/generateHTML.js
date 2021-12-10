@@ -95,8 +95,8 @@ const generateCards = (data) => {
  * @returns html literal for Manager Card
  */
 const createManagerCard = (worker) => {
-    console.log("in createManagerCard: " , worker);
-    console.log(worker);
+   // console.log("in createManagerCard: " , worker);
+   // console.log(worker);
    
 
     return `
@@ -108,7 +108,7 @@ const createManagerCard = (worker) => {
             <div class="card-body px-0">
                 <ul class="list-group list-group-flush">
                 <li class="list-group-item" id ="id">ID: ${worker.id}</li>
-                <li class="list-group-item" id ="email"> Email:<a href ="mailto: ${worker.email}">${worker.email}</a> </li>
+                <li class="list-group-item" id ="email"> Email:<a href ="mailto:${worker.email}">${worker.email}</a> </li>
                 <li class="list-group-item" id ="id">Office number: ${worker.officeNumber}</li>
 
                 </ul>
@@ -138,7 +138,7 @@ const createEngineerCard = (worker) => {
             <div class="card-body px-0">
                 <ul class="list-group list-group-flush">
                 <li class="list-group-item" id ="id">ID: ${worker.id}</li>
-                <li class="list-group-item" id ="email"> Email:<a href ="mailto: ${worker.email}">${worker.email}</a> </li>
+                <li class="list-group-item" id ="email"> Email:<a href ="mailto:${worker.email}">${worker.email}</a> </li>
                 <li class="list-group-item" id ="id">Github:<a href="https://github.com/${worker.github}"target="_blank">${worker.github}</a></li>
              
                 </ul>
@@ -167,7 +167,7 @@ const createInternCard = (worker) => {
             <div class="card-body px-0">
                 <ul class="list-group list-group-flush">
                 <li class="list-group-item" id ="id">ID: ${worker.id}</li>
-                <li class="list-group-item" id ="email"> Email:<a href ="mailto: ${worker.email}">${worker.email}</a> </li>
+                <li class="list-group-item" id ="email"> Email:<a href ="mailto:${worker.email}">${worker.email}</a> </li>
                 <li class="list-group-item" id ="id">School: ${worker.school}</li>
 
                 </ul>

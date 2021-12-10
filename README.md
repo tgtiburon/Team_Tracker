@@ -53,6 +53,11 @@ Team tracker is a node.js  command-line application that will take in input and 
   
   
 
+
+  ![](prompt.PNG)
+  [Here is a link to a video showing me generate a webpage of the team members](https://drive.google.com/file/d/1soa3qjEEMhE1Rb5K3XjW1956j46D0z1M/preview)
+  
+
   ---
 
   ## Installation
