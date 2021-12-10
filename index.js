@@ -351,9 +351,12 @@ const callMenu = () => {
 
 
 }
-
-
-
+/**
+ *  Function to write data to a file.
+ * @param {*} fileName 
+ * @param {*} data 
+ * @returns 
+ */
 const writeToFile = (fileName, data)  => {
 
     return new Promise((resolve,rejects) => {
@@ -379,11 +382,6 @@ const writeToFile = (fileName, data)  => {
     });
 
 };
-
-
-
-
-
 
 
 

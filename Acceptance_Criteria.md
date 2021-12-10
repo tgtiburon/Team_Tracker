@@ -1,6 +1,6 @@
 # Team_Tracker
 
-![](./assets/images/Capture.PNG)
+![](./assets/images/mock_up.PNG)
 
 ## User Story
 
